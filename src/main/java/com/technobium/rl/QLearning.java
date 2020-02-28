@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.PrintWriter;
 
 public class QLearning {
 
@@ -26,14 +27,14 @@ public class QLearning {
     public static void main(String args[]) {
         QLearning ql = new QLearning();
 
-        ql.init();
+        ql.init("resources/maze.txt");
         ql.calculateQ();
         ql.printQ();
         ql.printPolicy();
     }
 
-    public void init() {
-        File file = new File("resources/maze.txt");
+    public void init(String f) {
+        File file = new File(f);
 
         R = new int[statesCount][statesCount];
         Q = new double[statesCount][statesCount];
@@ -254,5 +255,30 @@ public class QLearning {
             }
             System.out.println();
         }
+    }
+    void saveMazeAndPolicy() {
+        String results = "\nPrint policy: ";
+
+        try { 
+        for (int i = 0; i < statesCount; i++) {
+            results += "From state " + i + " goto state " + getPolicyFromState(i) + "\n";
+        }
+
+        results += "Q matrix";
+        for (int i = 0; i < Q.length; i++) {
+            results += "From state " + i + ":  ";
+            for (int j = 0; j < Q[i].length; j++) {
+                results += "%6.2f " + (Q[i][j]);
+            }
+            results += "\n";
+        }
+
+        PrintWriter out = new PrintWriter("Policy Results");
+        out.println(results);
+        out.close();
+    }
+    catch (Exception e){
+        e.printStackTrace();
+    }
     }
 }
