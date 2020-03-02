@@ -17,16 +17,15 @@ public class MazeGenerator{
         }
 
         Random r = new Random();
-        maze[r.nextInt(x-1)][r.nextInt(y-1)] = 'F';
-        for (int i = 0; i < 1000; i++){
-        int randX = r.nextInt(x-1);
-        int randY = r.nextInt(y-1);
-        if (maze[randX][randY] == '0'){
+        maze[r.nextInt(x)][r.nextInt(y)] = 'F';
+        int randX = r.nextInt(x);
+        int randY = r.nextInt(y);
+        while (maze[randX][randY] != '0'){
+            randX = r.nextInt(x);
+            randY = r.nextInt(y);
+        }
             maze[randX][randY] = 'X';
-            i = 999;
-        }
-        }
-
+            
         return maze;
     }
     public void fullGenerate(int mazeSize, String mazeName){

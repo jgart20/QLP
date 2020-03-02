@@ -256,7 +256,7 @@ public class QLearning {
             System.out.println();
         }
     }
-    void saveMazeAndPolicy() {
+    void saveMazeAndPolicy(int a) {
         String results = "\nPrint policy: ";
 
         try { 
@@ -273,7 +273,7 @@ public class QLearning {
             results += "\n";
         }
 
-        PrintWriter out = new PrintWriter("Policy Results");
+        PrintWriter out = new PrintWriter("Policy Results" + a);
         out.println(results);
         out.close();
     }

@@ -7,10 +7,11 @@ public class QTraining{
     QLearning q = new QLearning();
 
     for (int i = 0; i < 10; i++){
-        String mazeName = "Maze " + i;
+        String mazeName = "Maze " + (i + 1);
         generatey.fullGenerate(3, mazeName);
         q.init(mazeName);
         q.calculateQ();
+        q.saveMazeAndPolicy(i+1);
         
     }
 
