@@ -256,6 +256,9 @@ public class QLearning {
             System.out.println();
         }
     }
+
+    //takes the printPolicy method and the printQ method and creates one, easily
+    //accessible void method that writes all necessary data to a .txt file
     void saveMazeAndPolicy(int a) {
         String results = "\nPrint policy: ";
 
